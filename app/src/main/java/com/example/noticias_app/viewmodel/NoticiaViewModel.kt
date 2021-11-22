@@ -23,6 +23,16 @@ class NoticiaViewModel : ViewModel() {
 
     }
 
+    fun buscarListaDeArticulosEnVM (noticia:String, apikey:String) {
+        Log.v("expone buscarListaDeArticulosEnVM", repositorio.buscarListaDeArticulosEnRepo(noticia, apikey).toString())
+        return repositorio.buscarListaDeArticulosEnRepo(noticia, apikey)
+    }
+
+    fun exponeBusquedaDeNoticiasEnVM(): MutableLiveData<List<Article>> {
+        Log.v("expone exponeBusquedaDeNoticiasEnVM", repositorio.exponeBusquedaDeNoticias_EnRepo().value.toString())
+        return repositorio.exponeNoticiasDeLaApi_EnRepo()
+    }
+
 }
 
 // Intenté un ViewModel Factory, pero al darme cuenta que no tengo argumentos en el ViewModel original no lo necesito

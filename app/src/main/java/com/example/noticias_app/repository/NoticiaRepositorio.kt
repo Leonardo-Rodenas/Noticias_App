@@ -40,4 +40,27 @@ class NoticiaRepositorio {
         Log.v("exponeNoticiasDeLaApi_EnRepo", listaDeArticulos.toString())
         return listaDeArticulos
     }
+
+    fun buscarListaDeArticulosEnRepo(noticia : String, apikey: String ) {
+
+        val call = cliente.buscarListaDeNoticias(noticia, apikey)
+        call.enqueue(object : Callback<NoticiaModel> {
+            override fun onResponse(call: Call<NoticiaModel>, response: Response<NoticiaModel>) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    listaDeArticulos.postValue(response.body()?.articles)
+                }
+            }
+
+            override fun onFailure(call: Call<NoticiaModel>, t: Throwable) {
+                call.cancel()
+            }
+        })
+
+    }
+
+    fun exponeBusquedaDeNoticias_EnRepo(): MutableLiveData<List<Article>> {
+        Log.v("exponeBusquedaNoticias_EnRepo", listaDeArticulos.toString())
+        return listaDeArticulos
+    }
+
 }

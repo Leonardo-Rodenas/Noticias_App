@@ -22,7 +22,6 @@ interface NoticiaService {
     ): Call<NoticiaModel>
 
     // https://newsapi.org/v2/everything?q=bitcoin&apiKey=6d648fd5802448b09fe8a59863c5efc1
-    //SOLO CREADO ACÁ, NO IMPLEMENTADO EN REPO - VIEWMODEL AÚN
     @GET("everything")
     fun buscarListaDeNoticias(
         @Query(value = "q", encoded = true) loBuscado: String,
