@@ -66,12 +66,6 @@ class ListadoFragment : Fragment() {
             findNavController().navigate(R.id.action_listadoFragment_to_buscarFragment)
         }
 
-        binding.boton.setOnClickListener(){
-
-            findNavController().navigate(R.id.action_listadoFragment_to_detalleArticuloFragment)
-
-        }
-
         return binding.root
 
     }

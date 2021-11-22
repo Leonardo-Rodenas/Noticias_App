@@ -2,6 +2,7 @@ package com.example.noticias_app.Service
 
 
 import com.example.noticias_app.model.Article
+import com.example.noticias_app.model.NoticiaModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -18,7 +19,7 @@ interface NoticiaService {
     fun traerListadoDeNoticias(
         @Query("country", encoded = true) pais: String = "mx",
         @Query("apiKey", encoded = true) apiKey: String = "6d648fd5802448b09fe8a59863c5efc1"
-    ): Call<List<Article>>
+    ): Call<NoticiaModel>
 
     // https://newsapi.org/v2/everything?q=bitcoin&apiKey=6d648fd5802448b09fe8a59863c5efc1
     //SOLO CREADO ACÁ, NO IMPLEMENTADO EN REPO - VIEWMODEL AÚN
@@ -26,7 +27,7 @@ interface NoticiaService {
     fun buscarListaDeNoticias(
         @Query(value = "q", encoded = true) loBuscado: String,
         @Query("apiKey",encoded = true) apiKey: String = "6d648fd5802448b09fe8a59863c5efc1"
-    ):Call<List<Article>>
+    ):Call<NoticiaModel>
 
 }
 

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.noticias_app.Client.NoticiaCliente
 import com.example.noticias_app.model.Article
+import com.example.noticias_app.model.NoticiaModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,29 +22,22 @@ class NoticiaRepositorio {
     fun traerListaDeArticulosEnRepo() {
 
         val call = cliente.traerListadoDeNoticias()
-        call.enqueue(object : Callback<List<Article>> {
-            override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-
+        call.enqueue(object : Callback<NoticiaModel> {
+            override fun onResponse(call: Call<NoticiaModel>, response: Response<NoticiaModel>) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    response.body().let {
-                        Log.v("expone", response.body().toString())
-                        listaDeArticulos.postValue(it)
-                    }
+                    listaDeArticulos.postValue(response.body()?.articles)
                 }
-
             }
 
-            override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                Log.v("expone", call.request().toString())
+            override fun onFailure(call: Call<NoticiaModel>, t: Throwable) {
                 call.cancel()
             }
-
         })
 
     }
 
     fun exponeNoticiasDeLaApi_EnRepo(): MutableLiveData<List<Article>> {
-        Log.v("expone", listaDeArticulos.toString())
+        Log.v("exponeNoticiasDeLaApi_EnRepo", listaDeArticulos.toString())
         return listaDeArticulos
     }
 }

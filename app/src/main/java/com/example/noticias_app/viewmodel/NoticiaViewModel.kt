@@ -11,14 +11,14 @@ class NoticiaViewModel : ViewModel() {
     private var repositorio = NoticiaRepositorio()
 
     fun traemeLaListaDeArticulosDelServer() {
-        Log.v("expone", "hola")
+        Log.v("expone traemeLaListaDeArticulosDelServer", repositorio.traerListaDeArticulosEnRepo().toString())
         repositorio.traerListaDeArticulosEnRepo()
 
     }
 
     fun exponeNoticiasDeLaApi_EnVM(): MutableLiveData<List<Article>> {
 
-        Log.v("exponeNoticiasVM", repositorio.exponeNoticiasDeLaApi_EnRepo().value.toString())
+        Log.v("expone exponeNoticiasDeLaApi_EnVM", repositorio.exponeNoticiasDeLaApi_EnRepo().value.toString())
         return repositorio.exponeNoticiasDeLaApi_EnRepo()
 
     }

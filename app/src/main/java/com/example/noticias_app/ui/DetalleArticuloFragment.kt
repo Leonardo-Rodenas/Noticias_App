@@ -13,7 +13,6 @@ import com.example.noticias_app.model.Article
 import com.example.noticias_app.viewmodel.NoticiaViewModel
 import com.squareup.picasso.Picasso
 
-
 class DetalleArticuloFragment : Fragment() {
 
     private var _binding: FragmentDetalleArticuloBinding? = null
@@ -29,14 +28,26 @@ class DetalleArticuloFragment : Fragment() {
 
         vmodel = ViewModelProvider(this).get(NoticiaViewModel::class.java)
 
-         //recibir lo que llega de la lista de las noticias
+        //recibir lo que llega de la lista de las noticias
 
-        var noticia = arguments?.getSerializable("noticia").toString()
+        var noticia = arguments?.getSerializable("noticia") as Article
 
         //asignar lo que recibo con el binding a cada vista
 
-      //
+        with(binding) {
+            tvAutor.text = noticia.author
+            tvFechaPublicaiN.text = noticia.publishedAt
+            tvFuente.text = noticia.source.name
+            tvTituloDetalle.text = noticia.title
+            cuerpoNoticia.text = noticia.content
 
+            Picasso.get().load(noticia.urlToImage).fit().centerCrop()
+                .placeholder(R.drawable.user_placeholder)
+                .error(R.drawable.user_placeholder_error)
+                .into(binding.ivImagenDetalle)
+        }
+
+        //Configurar Boton compartir
 
         binding.btnCompartir.setOnClickListener() {
 
@@ -44,13 +55,13 @@ class DetalleArticuloFragment : Fragment() {
             compartirIntent.action = Intent.ACTION_SEND
             compartirIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "Hola, esta noticia me pareció que podria interesarte"
+                "Hola, me pareció que esta noticia podria interesarte: " +
+                        "\n ${noticia.url}"
             )
             compartirIntent.type = "text/plain"
             startActivity(compartirIntent)
 
         }
-
 
         return binding.root
     }

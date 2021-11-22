@@ -23,7 +23,7 @@ class AdaptadorNoticias : RecyclerView.Adapter<AdaptadorNoticias.CustomViewHolde
 
             binding.tituloNoticia.text = noticia.title
             binding.tvFechaPublicaion.text = noticia.publishedAt
-            binding.tvAutor.text = noticia.author
+            //binding.tvAutor.text = noticia.author
 
             Picasso.get().load(noticia.urlToImage).fit().centerCrop()
                 .placeholder(R.drawable.user_placeholder)
