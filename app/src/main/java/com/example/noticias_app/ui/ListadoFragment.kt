@@ -32,10 +32,13 @@ class ListadoFragment : Fragment() {
 
         vmodel = ViewModelProvider(this).get(NoticiaViewModel::class.java)
 
+        //val recycler = binding.rvNoticias
         val adapter = AdaptadorNoticias()
+
+        //recycler.layoutManager = LinearLayoutManager(requireContext())
         with(binding)
         {
-            rvNoticias.layoutManager = LinearLayoutManager(context)
+           rvNoticias.layoutManager = LinearLayoutManager(context)
             rvNoticias.adapter = adapter
             vmodel.traemeLaListaDeArticulosDelServer()
             adapter.setOnItemClickListener(object : AdaptadorNoticias.ListenerParaClicksEnRV {
@@ -49,26 +52,27 @@ class ListadoFragment : Fragment() {
                 }
             })
 
-            vmodel.exponeNoticiasDeLaApi_EnVM().observe(viewLifecycleOwner, Observer {
 
-                Log.v("RecyclerViewNoticias", it.toString())
-                adapter.setNoticia(it)
-
-            })
-
-            binding.fbBuscar.setOnClickListener() {
-                findNavController().navigate(R.id.action_listadoFragment_to_buscarFragment)
-            }
-
-            binding.boton.setOnClickListener(){
-
-                findNavController().navigate(R.id.action_listadoFragment_to_detalleArticuloFragment)
-
-            }
-
-            return binding.root
         }
 
+        vmodel.exponeNoticiasDeLaApi_EnVM().observe(viewLifecycleOwner, Observer {
+
+            Log.v("RecyclerViewNoticias", it.toString())
+            adapter.setNoticia(it)
+
+        })
+
+        binding.fbBuscar.setOnClickListener() {
+            findNavController().navigate(R.id.action_listadoFragment_to_buscarFragment)
+        }
+
+        binding.boton.setOnClickListener(){
+
+            findNavController().navigate(R.id.action_listadoFragment_to_detalleArticuloFragment)
+
+        }
+
+        return binding.root
 
     }
 }

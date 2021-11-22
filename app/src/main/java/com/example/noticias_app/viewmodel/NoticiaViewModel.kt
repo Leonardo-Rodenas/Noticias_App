@@ -11,19 +11,18 @@ class NoticiaViewModel : ViewModel() {
     private var repositorio = NoticiaRepositorio()
 
     fun traemeLaListaDeArticulosDelServer() {
-
+        Log.v("expone", "hola")
         repositorio.traerListaDeArticulosEnRepo()
 
     }
 
     fun exponeNoticiasDeLaApi_EnVM(): MutableLiveData<List<Article>> {
+
+        Log.v("exponeNoticiasVM", repositorio.exponeNoticiasDeLaApi_EnRepo().value.toString())
         return repositorio.exponeNoticiasDeLaApi_EnRepo()
-        Log.v("exponeNoticiasVM", "mensaje")
+
     }
 
-    fun objetoNoticia(noticia: Article) : Article {
-        return noticia
-    }
 }
 
 // Intenté un ViewModel Factory, pero al darme cuenta que no tengo argumentos en el ViewModel original no lo necesito

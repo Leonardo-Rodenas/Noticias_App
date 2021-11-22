@@ -13,11 +13,20 @@ interface NoticiaService {
         val APIKEY = BuildConfig.API_KEY
     }*/
 
+    // https://newsapi.org/v2/top-headlines?country=mx&apiKey=6d648fd5802448b09fe8a59863c5efc1
     @GET("top-headlines")
     fun traerListadoDeNoticias(
         @Query("country", encoded = true) pais: String = "mx",
         @Query("apiKey", encoded = true) apiKey: String = "6d648fd5802448b09fe8a59863c5efc1"
     ): Call<List<Article>>
+
+    // https://newsapi.org/v2/everything?q=bitcoin&apiKey=6d648fd5802448b09fe8a59863c5efc1
+    //SOLO CREADO ACÁ, NO IMPLEMENTADO EN REPO - VIEWMODEL AÚN
+    @GET("everything")
+    fun buscarListaDeNoticias(
+        @Query(value = "q", encoded = true) loBuscado: String,
+        @Query("apiKey",encoded = true) apiKey: String = "6d648fd5802448b09fe8a59863c5efc1"
+    ):Call<List<Article>>
 
 }
 
@@ -34,3 +43,6 @@ interface NoticiaService {
 // La Query
 // ?country=mx&apiKey=6d648fd5802448b09fe8a59863c5efc1
 */
+
+//PARA HACER LA PARTE DE BUSCAR
+// GET https://newsapi.org/v2/everything?q=bitcoin&apiKey=6d648fd5802448b09fe8a59863c5efc1

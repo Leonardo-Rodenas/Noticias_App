@@ -44,7 +44,7 @@ class DetalleArticuloFragment : Fragment() {
             compartirIntent.action = Intent.ACTION_SEND
             compartirIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "Hola, esta noticia me pareció que podria interesarte "
+                "Hola, esta noticia me pareció que podria interesarte"
             )
             compartirIntent.type = "text/plain"
             startActivity(compartirIntent)

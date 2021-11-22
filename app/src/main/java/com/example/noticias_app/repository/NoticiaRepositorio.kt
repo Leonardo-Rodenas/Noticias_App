@@ -26,7 +26,7 @@ class NoticiaRepositorio {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     response.body().let {
-                        Log.v("log_en_repo_traerlistaserver", response.body().toString())
+                        Log.v("expone", response.body().toString())
                         listaDeArticulos.postValue(it)
                     }
                 }
@@ -34,6 +34,7 @@ class NoticiaRepositorio {
             }
 
             override fun onFailure(call: Call<List<Article>>, t: Throwable) {
+                Log.v("expone", call.request().toString())
                 call.cancel()
             }
 
@@ -42,9 +43,7 @@ class NoticiaRepositorio {
     }
 
     fun exponeNoticiasDeLaApi_EnRepo(): MutableLiveData<List<Article>> {
+        Log.v("expone", listaDeArticulos.toString())
         return listaDeArticulos
     }
-
-
-
 }
