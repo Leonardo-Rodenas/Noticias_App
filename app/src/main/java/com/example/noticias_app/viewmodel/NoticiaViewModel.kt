@@ -23,9 +23,9 @@ class NoticiaViewModel : ViewModel() {
 
     }
 
-    fun buscarListaDeArticulosEnVM (noticia:String, idioma: String,apikey:String) {
+    fun buscarListaDeArticulosEnVM (noticia:String) {
         Log.v("expone buscarListaDeArticulosEnVM", repositorio.buscarListaDeArticulosEnRepo(noticia, idioma,apikey).toString())
-        return repositorio.buscarListaDeArticulosEnRepo(noticia, idioma,apikey)
+        return repositorio.buscarListaDeArticulosEnRepo(noticia)
     }
 
     fun exponeBusquedaDeNoticiasEnVM(): MutableLiveData<List<Article>> {

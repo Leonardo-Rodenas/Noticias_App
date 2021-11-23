@@ -59,26 +59,7 @@ class BuscarFragment : Fragment() {
 
         }
 
-        binding.svNoticia.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query!!.isNotEmpty()) {
-                    Log.v("buscarNoticia", "La query no esta vacia")
-                    vmodel.buscarListaDeArticulosEnVM(query, "es","6d648fd5802448b09fe8a59863c5efc1")
-                } else {
-                    Toast.makeText(
-                        context,
-                        "Debes completar el campo de busqueda antes de realizarla",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-
-        })
 
         vmodel.exponeBusquedaDeNoticiasEnVM().observe(viewLifecycleOwner, Observer {
 

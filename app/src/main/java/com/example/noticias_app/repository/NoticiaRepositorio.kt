@@ -22,14 +22,14 @@ class NoticiaRepositorio {
     fun traerListaDeArticulosEnRepo() {
 
         val call = cliente.traerListadoDeNoticias()
-        call.enqueue(object : Callback<NoticiaModel> {
-            override fun onResponse(call: Call<NoticiaModel>, response: Response<NoticiaModel>) {
+        call.enqueue(object : Callback<List<Article>> {
+            override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
                 CoroutineScope(Dispatchers.IO).launch {
-                    listaDeArticulos.postValue(response.body()?.articles)
+                    listaDeArticulos.postValue(response.body()?.toString())
                 }
             }
 
-            override fun onFailure(call: Call<NoticiaModel>, t: Throwable) {
+            override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                 call.cancel()
             }
         })
@@ -46,15 +46,15 @@ class NoticiaRepositorio {
     fun buscarListaDeArticulosEnRepo(noticia: String, idioma: String, apikey: String) {
 
         val call = cliente.buscarListaDeNoticias(noticia, idioma, apikey)
-        call.enqueue(object : Callback<NoticiaModel> {
-            override fun onResponse(call: Call<NoticiaModel>, response: Response<NoticiaModel>) {
+        call.enqueue(object : Callback<List<Article>> {
+            override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
                 CoroutineScope(Dispatchers.IO).launch {
                     Log.v("buscarListaDeArticulosEnRepo", listaDeArticulos.value.toString())
-                    listaDeArticulos.postValue(response.body()?.articles)
+                    listaDeArticulos.postValue(response.body()?.toString())
                 }
             }
 
-            override fun onFailure(call: Call<NoticiaModel>, t: Throwable) {
+            override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                 call.cancel()
 
             }
