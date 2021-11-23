@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.noticias_app.databinding.FragmentDetalleArticuloBinding
 import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import com.example.noticias_app.R
 import com.example.noticias_app.model.Article
 import com.example.noticias_app.viewmodel.NoticiaViewModel
 import com.squareup.picasso.Picasso
+import com.example.noticias_app.MainActivity
+
+
+
 
 class DetalleArticuloFragment : Fragment() {
 
@@ -39,13 +44,24 @@ class DetalleArticuloFragment : Fragment() {
             tvFechaPublicaiN.text = noticia.publishedAt
             tvFuente.text = noticia.source.name
             tvTituloDetalle.text = noticia.title
-            cuerpoNoticia.text = noticia.content
+            cuerpoNoticia.text = noticia.description
 
             Picasso.get().load(noticia.urlToImage).fit().centerCrop()
                 .placeholder(R.drawable.user_placeholder)
                 .error(R.drawable.user_placeholder_error)
                 .into(binding.ivImagenDetalle)
         }
+
+        // De imagen a navegador para ver la noticia completa
+
+        binding.ivImagenDetalle.setOnClickListener(View.OnClickListener {
+            val webIntent: Intent = Uri.parse("${noticia.url}").let { webpage ->
+                Intent(Intent.ACTION_VIEW, webpage)
+
+            }
+
+            startActivity(webIntent)
+        })
 
         //Configurar Boton compartir
 
