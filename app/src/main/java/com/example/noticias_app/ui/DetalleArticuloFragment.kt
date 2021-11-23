@@ -1,21 +1,18 @@
 package com.example.noticias_app.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.noticias_app.databinding.FragmentDetalleArticuloBinding
-import android.content.Intent
-import android.net.Uri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.noticias_app.R
+import com.example.noticias_app.databinding.FragmentDetalleArticuloBinding
 import com.example.noticias_app.model.Article
 import com.example.noticias_app.viewmodel.NoticiaViewModel
 import com.squareup.picasso.Picasso
-import com.example.noticias_app.MainActivity
-
-
 
 
 class DetalleArticuloFragment : Fragment() {
@@ -61,6 +58,9 @@ class DetalleArticuloFragment : Fragment() {
             }
 
             startActivity(webIntent)
+
+
+
         })
 
         //Configurar Boton compartir
