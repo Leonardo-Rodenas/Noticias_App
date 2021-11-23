@@ -40,7 +40,7 @@ class BuscarFragment : Fragment() {
             rvBuscarNoticia.layoutManager = LinearLayoutManager(context)
 
             rvBuscarNoticia.adapter = adapter
-            vmodel.buscarListaDeArticulosEnVM("Chile", "6d648fd5802448b09fe8a59863c5efc1")
+            vmodel.buscarListaDeArticulosEnVM("Chile", "es","6d648fd5802448b09fe8a59863c5efc1")
 
             adapter.setOnItemClickListener(object : AdaptadorNoticias.ListenerParaClicksEnRV {
                 override fun alClickearItem(noticia: Article) {
@@ -63,7 +63,7 @@ class BuscarFragment : Fragment() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query!!.isNotEmpty()) {
                     Log.v("buscarNoticia", "La query no esta vacia")
-                    vmodel.buscarListaDeArticulosEnVM(query, "6d648fd5802448b09fe8a59863c5efc1")
+                    vmodel.buscarListaDeArticulosEnVM(query, "es","6d648fd5802448b09fe8a59863c5efc1")
                 } else {
                     Toast.makeText(
                         context,

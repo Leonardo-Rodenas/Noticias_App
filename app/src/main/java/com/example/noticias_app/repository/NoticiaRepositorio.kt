@@ -41,18 +41,22 @@ class NoticiaRepositorio {
         return listaDeArticulos
     }
 
-    fun buscarListaDeArticulosEnRepo(noticia : String, apikey: String ) {
+    // BUSCAR
 
-        val call = cliente.buscarListaDeNoticias(noticia, apikey)
+    fun buscarListaDeArticulosEnRepo(noticia: String, idioma: String, apikey: String) {
+
+        val call = cliente.buscarListaDeNoticias(noticia, idioma, apikey)
         call.enqueue(object : Callback<NoticiaModel> {
             override fun onResponse(call: Call<NoticiaModel>, response: Response<NoticiaModel>) {
                 CoroutineScope(Dispatchers.IO).launch {
+                    Log.v("buscarListaDeArticulosEnRepo", listaDeArticulos.value.toString())
                     listaDeArticulos.postValue(response.body()?.articles)
                 }
             }
 
             override fun onFailure(call: Call<NoticiaModel>, t: Throwable) {
                 call.cancel()
+
             }
         })
 

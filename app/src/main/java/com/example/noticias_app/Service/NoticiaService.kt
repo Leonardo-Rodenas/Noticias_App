@@ -22,12 +22,16 @@ interface NoticiaService {
     ): Call<NoticiaModel>
 
     // https://newsapi.org/v2/everything?q=bitcoin&apiKey=6d648fd5802448b09fe8a59863c5efc1
+
+    // + language=es
+
+    // https://newsapi.org/v2/everything?q=chile&language=es&apiKey=6d648fd5802448b09fe8a59863c5efc1
     @GET("everything")
     fun buscarListaDeNoticias(
         @Query(value = "q", encoded = true) loBuscado: String,
+        @Query(value = "language", encoded = true) idioma: String,
         @Query("apiKey",encoded = true) apiKey: String = "6d648fd5802448b09fe8a59863c5efc1"
     ):Call<NoticiaModel>
-
 
 }
 
