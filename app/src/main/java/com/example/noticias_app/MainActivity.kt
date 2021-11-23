@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navegador, null)
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navegador, null);
     }
 
 }
