@@ -38,7 +38,7 @@ class NoticiaClienteTest {
 //    lo que esperamos obtener y lo que obtenemos (en este caso la descripción "Este
 //    domingo se dio a conocer que el presidente López Obrador.... " SON IGUALES
 
-/*    @Test
+/*   @Test
     fun test_apiExitosa() {
         val call =
             NoticiaCliente.obtenCliente("http://localhost:8080/test/").traerListadoDeNoticias()
@@ -51,7 +51,7 @@ class NoticiaClienteTest {
 //    considera exitosa pues lo que esperamos obtener y lo que obtenemos (en este caso la descripción "Este
 //    domingo se dio a conocer que el presidente López Obrador.... " SON DIFERENTES
 
-/*    @Test
+/*  @Test
     fun test_apiError() {
         val call =
             NoticiaCliente.obtenCliente("http://localhost:8080/test/").traerListadoDeNoticias()

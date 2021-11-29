@@ -59,8 +59,6 @@ class DetalleArticuloFragment : Fragment() {
 
             startActivity(webIntent)
 
-
-
         })
 
         //Configurar Boton compartir
